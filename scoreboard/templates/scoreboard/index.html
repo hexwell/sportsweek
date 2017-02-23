@@ -5,6 +5,8 @@
     <title>Punteggi</title>
 </head>
 <body>
-    <p>Placeholder Ranking</p>
+    {% for a in sports%}
+    <p>{{ a.name }}</p>
+    {% endfor %}
 </body>
 </html>
