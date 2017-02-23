@@ -1,16 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Benvenuti</title>
-</head>
-<body>
-    {% extends "base.html" %}
+<html>
+	<head>
+	</head>
 
-    {% block content %}
+	<body>
+		{% extends "base.html" %} 
 
-    <p>Benvenuti alla settimana dello sport 2017</p>
+		{% block content %}
 
-    {% endblock %}
-</body>
+		<center>
+
+			<h1> Benvenuti su MySportsWeek</h1>
+			<h3> La web app dedicata alla gestione di squadre e punteggi <br> durante la settimana dello sport, per l'ITIS Marconi. </h3> 
+			<br> <div class="line"></div> <br> 
+
+		</center>		
+
+		<style>
+			.demo-card-wide.mdl-card {
+			  width: 700px;
+			  height: 300px;
+			  background: #66ccff;
+			  align-items: center;
+			}
+			.demo-card-wide > .mdl-card__title {
+			  color: #FFFFFF;
+			}
+			.demo-card-wide > .mdl-card__supporting-text1 {
+				font-size: 40px;
+			}
+
+			.line {
+				 height: 1px;
+				 flex: 1;
+				 background: rgb(33, 150, 243);
+				 margin: 0 500px;
+			}
+		</style>
+
+		<br>
+		<center>
+		<div class="demo-card-wide mdl-card mdl-shadow--8dp">
+		  <div class="mdl-card__title">
+             <h3> Come Funziona: MySportsWeek </h3>
+  			</div>
+			  <div class="mdl-card__supporting-text1">
+			  	<h6>
+			    MySportsWeek, suddivide gli utenti in varie categorie, in base al ruolo <br> che essi ricoprono durante la settimana dello sport. <br>
+			    Tali ruoli, sono i seguenti: <br><br>
+				<b> Sport Manager </b>, ovvero il responsabile di squadre e tornei per uno specifico sport <br>
+				<b> Squad Manager </b>, ovvero il "caposquadra" di un team per un particolare sport <br>
+				<b> Player </b>, o partecipante alla settimana dello sport <br>
+				</h6>
+				<br>
+				</center>
+			    </div>
+			</div>
+		{% endblock %}
+	</body>
+	<!-- Coded by: Tobia Valerio (Head Front End Developer, Back End Assistant), Ettore Forigo (Head Back End Developer, Front End Assistant) -->
 </html>
