@@ -2,21 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>SportsWeek</title>
+
+    {% load static %}
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.deep_orange-indigo.min.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'scoreboard/style.css' %}"/>
 </head>
 <body>
     <!-- Always shows a header, even in smaller screens. -->
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
       <header class="mdl-layout__header">
-        <div class="mdl-layout__header-row" style="padding-left: 16px;">
+        <div class="mdl-layout__header-row">
           <!-- Title -->
           <span class="mdl-layout-title">
-              <a class="mdl-layout-title" href="{% url 'index' %}" style="all: inherit;
-              text-decoration: none;">SportsWeek</a></span>
+              <a class="mdl-layout-title" href="{% url 'index' %}">SportsWeek</a></span>
           <!-- Add spacer, to align navigation to the right -->
           <div class="mdl-layout-spacer"></div>
           <!-- Navigation. We hide it in small screens. -->
