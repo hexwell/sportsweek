@@ -1,8 +1,9 @@
-from django.shortcuts import render, loader
-from django.http import HttpResponse
+from django.views import generic
+
+from .models import Sport
 
 
-def index(request):
-    template = loader.get_template('scoreboard/index.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
+class IndexView(generic.ListView):
+	model = Sport
+	context_object_name = 'sports'
+	template_name = 'scoreboard/index.html'

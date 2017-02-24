@@ -1,8 +1,6 @@
-from django.shortcuts import render, loader
-from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def index(request):
-	template = loader.get_template('index.html')
-	context = {'logged_in': False}
-	return HttpResponse(template.render(context, request))
+	context = {'username': request.user.username if request.user else None}
+	return render(request, 'index.html', context)

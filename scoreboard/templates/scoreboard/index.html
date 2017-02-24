@@ -5,6 +5,12 @@
     <title>Punteggi</title>
 </head>
 <body>
-    <p>Placeholder Ranking</p>
+    {% if sports %}
+    {% for sport in sports%}
+    <p>{{ sport.name }}</p>
+    {% endfor %}
+    {% else %}
+    <p>Non sono presenti sport</p>
+    {% endif %}
 </body>
 </html>

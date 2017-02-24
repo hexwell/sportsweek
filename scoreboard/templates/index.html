@@ -1,61 +1,51 @@
-<html>
-	<head>
-	</head>
+{% extends "base.html" %} 
 
-	<body>
-		{% extends "base.html" %} 
+{% block content %}
 
-		{% block content %}
+<center>
 
-		<center>
+	<h1> Benvenuti su SportsWeek</h1>
+	<h3> La web app dedicata alla gestione di squadre e punteggi <br> durante la settimana dello sport, per l'ITIS Marconi. </h3> 
+	<br> <div class="line"></div> <br> 
 
-			<h1> Benvenuti su MySportsWeek</h1>
-			<h3> La web app dedicata alla gestione di squadre e punteggi <br> durante la settimana dello sport, per l'ITIS Marconi. </h3> 
-			<br> <div class="line"></div> <br> 
+</center>		
 
-		</center>		
+<style>
+	.demo-card-wide.mdl-card {
+	  width: 700px;
+	  height: 300px;
+	  background: #66ccff;
+	  align-items: center;
+	}
+	.demo-card-wide > .mdl-card__title {
+	  color: #FFFFFF;
+	}
+	.demo-card-wide > .mdl-card__supporting-text1 {
+		font-size: 40px;
+	}
 
-		<style>
-			.demo-card-wide.mdl-card {
-			  width: 700px;
-			  height: 300px;
-			  background: #66ccff;
-			  align-items: center;
-			}
-			.demo-card-wide > .mdl-card__title {
-			  color: #FFFFFF;
-			}
-			.demo-card-wide > .mdl-card__supporting-text1 {
-				font-size: 40px;
-			}
+	.line {
+		 height: 1px;
+		 flex: 1;
+		 background: rgb(33, 150, 243);
+		 margin: 0 500px;
+	}
+</style>
 
-			.line {
-				 height: 1px;
-				 flex: 1;
-				 background: rgb(33, 150, 243);
-				 margin: 0 500px;
-			}
-		</style>
-
-		<br>
-		<center>
-		<div class="demo-card-wide mdl-card mdl-shadow--8dp">
-		  <div class="mdl-card__title">
-             <h3> Come Funziona: MySportsWeek </h3>
-  			</div>
-			  <div class="mdl-card__supporting-text1">
-			  	<h6>
-			    MySportsWeek, suddivide gli utenti in varie categorie, in base al ruolo <br> che essi ricoprono durante la settimana dello sport. <br>
-			    Tali ruoli, sono i seguenti: <br><br>
-				<b> Sport Manager </b>, ovvero il responsabile di squadre e tornei per uno specifico sport <br>
-				<b> Squad Manager </b>, ovvero il "caposquadra" di un team per un particolare sport <br>
-				<b> Player </b>, o partecipante alla settimana dello sport <br>
-				</h6>
-				<br>
-				</center>
-			    </div>
-			</div>
-		{% endblock %}
-	</body>
-	<!-- Coded by: Tobia Valerio (Head Front End Developer, Back End Assistant), Ettore Forigo (Head Back End Developer, Front End Assistant) -->
-</html>
+<br>
+<center>
+    <div class="demo-card-wide mdl-card mdl-shadow--8dp">
+        <div class="mdl-card__title">
+            <h3> Come funziona SportsWeek: </h3>
+        </div><div class="mdl-card__supporting-text1">
+        <h6>
+            I tornei saranno suddivisi per sport: <br> Ogni sport ha un gestore che crea squadre e partite, saranno poi
+            presenti degli arbitri che assegneranno i punti. <br> Le classifiche di ogni sport sarannno aggiornate in
+            tempo reale.
+        </h6>
+        <br>
+        </div>
+    </div>
+</center>
+<br>
+{% endblock %}
