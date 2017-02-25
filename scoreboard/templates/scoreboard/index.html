@@ -5,7 +5,7 @@
 <title>Punteggi</title>
 {% if sports %}
 {% for sport in sports%}
-<p>{{ sport.name }}</p>
+<a href="{% url 'scoreboard:ranking' sport_name=sport.name %}">{{ sport.name }}</a>
 {% endfor %}
 {% else %}
 <p>Non sono presenti sport</p>
