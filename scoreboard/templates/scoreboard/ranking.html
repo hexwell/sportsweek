@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+{%if teams%}
+{% for team in teams %}
+<p>{{team.name}}, punti:{{team.score}}</p>
+{% endfor %}
+{% else %}
+<p>Questo sport non esiste o non ha ancora squadre</p>
+{% endif %}
+{% endblock %}
