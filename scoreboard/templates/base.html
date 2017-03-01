@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="it">
   <head>
+  	{% load static %}
     <meta charset="UTF-8">
     <meta name="theme-color" content="#ff5722">
     <title>SportsWeek</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.deep_orange-red.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'scoreboard/style.css' %}"/>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -35,16 +37,16 @@
       </header>
       <main class="mdl-layout__content">
         {% block content %}{% endblock %}
+	      <footer class="mdl-mini-footer">
+	        <div class="mdl-mini-footer--middle-section">
+	          <div class="mdl-logo">SportsWeek v0.1 &copy
+	          <script type="text/javascript">document.write(new Date().getFullYear());</script></div>
+	          <ul class="mdl-mini-footer--link-list">
+	            <li><a href="https://github.com/Hexwell/SportsWeek/issues/new" target="_blank">Segnala un bug</a></li>
+	          </ul>
+	        </div>
+	      </footer>
       </main>
-      <footer class="mdl-mini-footer">
-        <div class="mdl-mini-footer--middle-section">
-          <div class="mdl-logo">SportsWeek v0.1 &copy
-          <script type="text/javascript">document.write(new Date().getFullYear());</script></div>
-          <ul class="mdl-mini-footer--link-list">
-            <li><a href="https://github.com/Hexwell/SportsWeek/issues/new" target="_blank">Segnala un bug</a></li>
-          </ul>
-        </div>
-      </footer>
     </div>
     <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
   </body>
