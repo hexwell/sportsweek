@@ -216,5 +216,9 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
-#Database
+#############
+## Database
+#############
+
+# SQLite3
 *.db

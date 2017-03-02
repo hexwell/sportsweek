@@ -2,3 +2,25 @@
     all: inherit;
     text-decoration: none;
 }
+
+html, body {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.mdl-layout__content {
+  min-height: 100%;
+  position: relative;
+  padding: .01em;
+  padding-bottom: .6em;
+}
+
+.mdl-mini-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: .6em;
+}
