@@ -2,11 +2,15 @@
 
 {% block content %}
 
-<title>Punteggi</title>
+<title>Sports</title>
 {% if sports %}
+<ul>
 {% for sport in sports%}
+<li>
 <a href="{% url 'scoreboard:ranking' sport_name=sport.name %}">{{ sport.name }}</a>
+</li>
 {% endfor %}
+</ul>
 {% else %}
 <p>Non sono presenti sport</p>
 {% endif %}
