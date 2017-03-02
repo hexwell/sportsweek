@@ -1,11 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-{%if teams%}
-{% for team in teams %}
-<p>{{team.name}}, punti:{{team.score}}</p>
+
+<title>Punteggi</title>
+<a href="{% url 'scoreboard:index' %}">Back</a>
+<h1>{{sport_name}}</h1>
+{%if events%}
+{% for event in events %}
+<p>{{event}}, {{event.match_date}}</p>
 {% endfor %}
+{% endif %}
+{%if teams%}
+<table>
+<tr>
+    <th><p><strong>Squadra</strong></p></th>
+    <th><p style="padding-left: 30px;"><strong>Punti</strong></p></th>
+</tr>
+{% for team in teams %}
+<tr>
+	<td><p>{{team.name}}</p></td>
+	<td><p style="padding-left: 30px;">{{team.score}}</p></td>
+</tr>
+{% endfor %}
+</table>
 {% else %}
-<p>Questo sport non esiste o non ha ancora squadre</p>
+<p>Questo sport non ha ancora squadre</p>
 {% endif %}
 {% endblock %}
