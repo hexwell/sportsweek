@@ -7,7 +7,7 @@
 <ul>
 {% for sport in sports%}
 <li>
-<a href="{% url 'scoreboard:ranking' sport_name=sport.name %}">{{ sport.name }}</a>
+<h3><a href="{% url 'scoreboard:ranking' sport_id=sport.id %}">{{ sport.name }}</a></h3>
 </li>
 {% endfor %}
 </ul>
