@@ -5,6 +5,8 @@ from django.views import generic
 
 from .models import Sport, Team, Event
 
+interval = datetime.timedelta(minutes=30)
+
 
 class IndexView(generic.ListView):
 	model = Sport
@@ -12,15 +14,15 @@ class IndexView(generic.ListView):
 	template_name = 'scoreboard/index.html'
 
 
-def ranking_view(request, sport_name):
-	get_object_or_404(Sport.objects.filter(name=sport_name))
+def ranking_view(request, sport_id):
+	sport_obj = get_object_or_404(Sport.objects.filter(id=sport_id))
 	context = {
-		'sport_name': sport_name,
-		'teams': Team.objects.filter(sport=Sport.objects.filter(name=sport_name)).order_by('-score')
+		'sport_name': sport_obj.name,
+		'teams': Team.objects.filter(sport=sport_obj).order_by('-score')
 	}
 	events = []
-	for event in Event.objects.filter(sport__name=sport_name).order_by('-match_date'):
-		if not event.expired and event.is_imminent(datetime.timedelta(minutes=30)):
+	for event in Event.objects.filter(sport=sport_obj).order_by('-match_date'):
+		if event.can_be_shown(interval):
 			events.append(event)
 	if events:
 		context['events'] = events
