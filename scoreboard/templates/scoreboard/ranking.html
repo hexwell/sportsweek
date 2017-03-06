@@ -1,27 +1,35 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<title>Punteggi - SportsWeek</title>
+<script src="{% static 'scoreboard/auto_update.js' %}"></script>
+{% endblock %}
 
 {% block content %}
-
-<title>Punteggi</title>
 <a href="{% url 'scoreboard:index' %}">Back</a>
 <h1>{{sport_name}}</h1>
-{%if events%}
-{% for event in events %}
-<h4>{{event}}, {{event.match_date}}</h4>
-{% endfor %}
-{% endif %}
-{%if teams%}
+{% include "scoreboard/events.html" with events=events only %}
+{% if teams %}
 <table>
-<tr>
-    <th><p><strong>Squadra</strong></p></th>
-    <th><p style="padding-left: 30px;"><strong>Punti</strong></p></th>
-</tr>
-{% for team in teams %}
-<tr>
-	<td><p>{{team.name}}</p></td>
-	<td><p style="padding-left: 30px;">{{team.score}}</p></td>
-</tr>
-{% endfor %}
+  <tr>
+    <th>
+      <p><strong>Squadra</strong></p>
+    </th>
+    <th>
+      <p style="padding-left: 30px;"><strong>Punti</strong></p>
+    </th>
+  </tr>
+  {% for team in teams %}
+  <tr>
+    <td>
+      <p>{{team.name}}</p>
+    </td>
+    <td>
+      <p style="padding-left: 30px;">{{team.score}}</p>
+    </td>
+  </tr>
+  {% endfor %}
 </table>
 {% else %}
 <p>Questo sport non ha ancora squadre</p>

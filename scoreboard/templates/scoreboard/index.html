@@ -1,18 +1,19 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block head %}
+<title>Sports - SportsWeek</title>
+{% endblock %}
 
-<title>Sports</title>
+{% block content %}
 {% if sports %}
 <ul>
-{% for sport in sports%}
-<li>
-<h3><a href="{% url 'scoreboard:ranking' sport_id=sport.id %}">{{ sport.name }}</a></h3>
-</li>
-{% endfor %}
+  {% for sport in sports %}
+  <li>
+    <h3><a href="{% url 'scoreboard:ranking' sport_id=sport.id %}">{{sport.name}}</a></h3>
+  </li>
+  {% endfor %}
 </ul>
 {% else %}
 <p>Non sono presenti sport</p>
 {% endif %}
-
 {% endblock %}

@@ -1,51 +1,32 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
+
+{% block head %}
+<title>SportsWeek</title>
+{% endblock %}
 
 {% block content %}
-
 <center>
-
-	<h1> Benvenuti su SportsWeek</h1>
-	<h3> La web app dedicata alla gestione di squadre e punteggi <br> durante la settimana dello sport, per l'ITIS Marconi. </h3> 
-	<br> <div class="line"></div> <br> 
-
-</center>		
-
-<style>
-	.demo-card-wide.mdl-card {
-	  width: 700px;
-	  height: 300px;
-	  background: #66ccff;
-	  align-items: center;
-	}
-	.demo-card-wide > .mdl-card__title {
-	  color: #FFFFFF;
-	}
-	.demo-card-wide > .mdl-card__supporting-text1 {
-		font-size: 40px;
-	}
-
-	.line {
-		 height: 1px;
-		 flex: 1;
-		 background: rgb(33, 150, 243);
-		 margin: 0 500px;
-	}
-</style>
-
+  <h1> Benvenuti su SportsWeek</h1>
+  <h3> La web app dedicata alla gestione di squadre e punteggi <br> durante la settimana dello sport, per l'ITIS Marconi. </h3>
+  <br>
+  <div class="line"></div>
+  <br>
+</center>
 <br>
 <center>
-    <div class="demo-card-wide mdl-card mdl-shadow--8dp">
-        <div class="mdl-card__title">
-            <h3> Come funziona SportsWeek: </h3>
-        </div><div class="mdl-card__supporting-text1">
-        <h6>
-            I tornei saranno suddivisi per sport: <br> Ogni sport ha un gestore che crea squadre e partite, saranno poi
-            presenti degli arbitri che assegneranno i punti. <br> Le classifiche di ogni sport sarannno aggiornate in
-            tempo reale.
-        </h6>
-        <br>
-        </div>
+  <div class="demo-card-wide mdl-card mdl-shadow--8dp">
+    <div class="mdl-card__title">
+      <h3> Come funziona SportsWeek: </h3>
     </div>
+    <div class="mdl-card__supporting-text1">
+      <h6>
+        I tornei saranno suddivisi per sport: <br> Ogni sport ha un gestore che crea squadre e partite, saranno poi
+        presenti degli arbitri che assegneranno i punti. <br> Le classifiche di ogni sport sarannno aggiornate in
+        tempo reale.
+      </h6>
+      <br>
+    </div>
+  </div>
 </center>
 <br>
 {% endblock %}

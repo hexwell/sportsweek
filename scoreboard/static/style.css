@@ -1,26 +1,48 @@
-#logo{
+#logo {
     all: inherit;
     text-decoration: none;
 }
 
 html, body {
-  overflow-x: hidden;
-  overflow-y: hidden;
-  margin: 0;
-  padding: 0;
-  height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 .mdl-layout__content {
-  min-height: 100%;
-  position: relative;
-  padding: .01em;
-  padding-bottom: .6em;
+    min-height: 100%;
+    position: relative;
+    padding: .01em;
+    padding-bottom: .6em;
 }
 
 .mdl-mini-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.demo-card-wide.mdl-card {
+    width: 700px;
+    height: 300px;
+    background: #66ccff;
+    align-items: center;
+}
+
+.demo-card-wide > .mdl-card__title {
+    color: #FFFFFF;
+}
+
+.demo-card-wide > .mdl-card__supporting-text1 {
+    font-size: 40px;
+}
+
+.line {
+    height: 1px;
+    flex: 1;
+    background: rgb(33, 150, 243);
+    margin: 0 500px;
 }
