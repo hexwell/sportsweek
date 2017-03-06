@@ -13,7 +13,10 @@ class EventInline(admin.TabularInline):
 	extra = 1
 
 	def formfield_for_foreignkey(self, db_field, request, **kwargs):
-		current_sport = Sport.objects.filter(id=request.resolver_match.args[0])
+		if request.resolver_match.args:
+			current_sport = Sport.objects.filter(id=request.resolver_match.args[0])
+		else:
+			current_sport = None
 		if db_field.name == "team0":
 			kwargs["queryset"] = Team.objects.filter(sport=current_sport)
 		if db_field.name == "team1":
