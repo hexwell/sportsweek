@@ -42,6 +42,22 @@ That was possible because the url that point to a sport is formed with it's id, 
 Templates all "extend" a base one with a header and a footer that are common to all pages, to follow the DRY principle.
 The same goes for the event "card", which will be used in both the ranking  and the "history" pages.
 
+## Technical explanation, difficulties and considerations (Front-end)
+
+### Introduction & Explanation
+With some parts of the website being customized and edited [Material Design Lite](https://getmdl.io/index.html) (also referred to as MDL) modules, all of the structure and responsive elements are run on [Foundation](http://foundation.zurb.com/) v6, an extremely versatile and powerful front-end framework, which helped to greatly simplify the development of templates, considering that the core CSS and JavaScript features were already included in the framework's package. 
+This allowed for rapid and efficient customization and creation of multiple templates in a relatively short period of time.
+
+### Website Structure
+Starting from the top, we can of course observe the header. In the first phases of development, this section was realized using Material Design Lite components. This was, however, object of change seeing the multiple issues that rose upon the implementation of responsive design code, that said kit (MDL) caused.
+Therefore, after many hours of research, it was clear that switching to a more versatile framework was (at least for this section of the website) needed. We found our solution in (as mentioned before) Foundation.
+In less than half of the time, a working, stylish and responsive header was developed and implemented in the final version of the base.html file (A template composed of header & footer elements that is common to all the views of the web application [See the front-end documentation for further information on the web app structure]).
+
+After concluding the header section, we straight on moved onto the development of the footer section, which (at first), was constituted by an MDL element. We later decided that for the sake of code order and beauty, as well as efficiency and practical reasons, creating a template using a common framework for all the elements was best. This brought us to create the footer of the base template from scratch using, once again, Foundation 6.
+
+Regarding the actual page content of all the other templates, most of it was realized using Material Design Lite modules, which were integrated and edited to work in an efficient manner with the Foundation framework, bringing most of the cross-platform and responsive features of it, to the MDL kit components.
+
+
 ## Next steps
 
 Next thing we have to face is the possibility to change scores from the app itself, only for users with permissions to do so. The scores also have to update live with Ajax, and we have to write the corresponding views to send the updated data.
