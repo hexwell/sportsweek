@@ -9,7 +9,7 @@
 <p><strong>Credenziali sbagliate, riprovare</strong></p>
 {% endif %}
 
-<form method="POST" action="{% url 'login_handler' %}?from={{from}}">
+<form method="POST" action="{% url 'login_handler' %}?next={{next}}">
   {% csrf_token %}
   <p><input type="text" name="username" value="" placeholder="Nome utente"></p>
   <p><input type="password" name="password" value="" placeholder="Password"></p>
