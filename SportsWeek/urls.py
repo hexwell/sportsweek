@@ -21,7 +21,7 @@ from . import views
 urlpatterns = [
 	url(r'^$', views.index, name='index'),
 	url(r'^login/$', views.login_view, name='login'),
-	url(r'^login/handle$', views.login_handler, name='login_handler'),
+	url(r'^login/handle/$', views.login_handler, name='login_handler'),
 	url(r'^logout', views.logout_handler, name='logout'),
 	url(r'^scoreboard/', include('scoreboard.urls')),
 	url(r'^admin/', admin.site.urls),
