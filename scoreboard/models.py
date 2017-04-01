@@ -27,6 +27,8 @@ class Event(models.Model):
 	sport = models.ForeignKey(Sport, on_delete=models.CASCADE)
 	team0 = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team0')
 	team1 = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team1')
+	score0 = models.IntegerField(default=0)
+	score1 = models.IntegerField(default=0)
 	match_date = models.DateTimeField('match date')
 	expired = False
 
