@@ -24,6 +24,10 @@ body {
   text-decoration: none;
 }
 
+.footer .copy {
+  color: #fff;
+  text-decoration: none;
+}
 
 .navbar-default {
   background-color: #ff9f44;
