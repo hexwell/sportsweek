@@ -26,7 +26,7 @@ class EventInline(admin.TabularInline):
 
 @admin.register(Sport)
 class SportAdmin(admin.ModelAdmin):
-	fields = ['name']
+	fields = ['name', 'creator']
 	inlines = [TeamInline, EventInline]
 	list_display = ('name', 'count_teams', 'count_events')
 	search_fields = ['name', 'team__name']
