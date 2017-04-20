@@ -16,4 +16,7 @@
 {% else %}
 <p>Non sono presenti sport</p>
 {% endif %}
+{% if has_permission %}
+<button onclick="location.href = '{% url 'scoreboard:create_sport' %}'">Add sport</button>
+{% endif %}
 {% endblock %}

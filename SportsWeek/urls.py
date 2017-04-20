@@ -19,10 +19,8 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-	url(r'^$', views.index, name='index'),
-	url(r'^login/$', views.login_view, name='login'),
-	url(r'^login/handle/$', views.login_handler, name='login_handler'),
-	url(r'^logout', views.logout_handler, name='logout'),
+	url(r'^$', views.IndexView.as_view(), name='index'),
 	url(r'^scoreboard/', include('scoreboard.urls')),
+	url(r'^', include('django.contrib.auth.urls')),
 	url(r'^admin/', admin.site.urls),
 ]

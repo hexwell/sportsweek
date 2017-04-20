@@ -1,0 +1,17 @@
+{% load static %}
+
+<style>
+    .squad0, .squad1{
+        all: initial !important;
+        * {
+            all: unset !important;
+        }
+    }
+</style>
+
+<script type="text/javascript" src="{% static 'scoreboard/auto_update.js' %}"></script>
+
+<script type="text/javascript">
+    // setInterval(update_wrapper("{% url 'scoreboard:get_updated_scores' %}?ids="), 5000);
+    update_wrapper("{% url 'scoreboard:get_updated_scores' %}?ids=")();
+</script>

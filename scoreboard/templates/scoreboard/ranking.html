@@ -10,6 +10,7 @@
 <a href="{% url 'scoreboard:index' %}">Back</a>
 <h1>{{sport_name}}</h1>
 {% include "scoreboard/events.html" with events=events only %}
+{% include "scoreboard/events_wrapper.html" only %}
 {% if teams %}
 <table>
   <tr>

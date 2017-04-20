@@ -1,10 +1,14 @@
 import datetime
 
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, reverse
 from django.http import HttpResponseBadRequest, JsonResponse
-from django.views.generic import ListView
+from django.views.generic import ListView, FormView
+from django.forms.utils import ErrorList
+from django.forms import forms as forms_
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from .models import Sport, Team, Event
+from .forms import SportForm
 
 interval = datetime.timedelta(minutes=30)
 
@@ -13,6 +17,11 @@ class IndexView(ListView):
 	model = Sport
 	context_object_name = 'sports'
 	template_name = 'scoreboard/index.html'
+
+	def get_context_data(self, **kwargs):
+		context = super(IndexView, self).get_context_data(**kwargs)
+		context['has_permission'] = create_sport_permission_check(self.request.user)
+		return context
 
 
 class RankingList(ListView):
@@ -35,6 +44,45 @@ class RankingList(ListView):
 		if events:
 			context['events'] = events
 		return context
+
+
+class SportFormView(LoginRequiredMixin, UserPassesTestMixin, FormView):
+	template_name = 'scoreboard/create_sport.html'
+	form_class = SportForm
+
+	def test_func(self):
+		return create_sport_permission_check(self.request.user, bypass_admin=True)
+
+	def get_login_url(self):
+		if not self.request.user.is_authenticated():
+			return super(SportFormView, self).get_login_url()
+		else:
+			return reverse('scoreboard:index')
+
+	def get_success_url(self):
+		return reverse('scoreboard:index')
+
+	def form_valid(self, form):
+		if not create_sport_permission_check(self.request.user, bypass_admin=True):
+			errors = form.errors.setdefault(forms_.NON_FIELD_ERRORS, ErrorList())
+			errors.append("User already created a sport")
+			return self.form_invalid(form)
+		form.instance.creator = self.request.user
+		form.save()
+		return super(SportFormView, self).form_valid(form)
+
+
+def create_sport_permission_check(user, bypass_admin=False):
+	if user.is_authenticated:
+		is_sport_adm = len(user.groups.filter(name='Sport_ADM')) == 1
+		has_permission = len(Sport.objects.filter(creator=user)) == 0 and is_sport_adm
+	else:
+		has_permission = False
+
+	if user.is_superuser and not bypass_admin:
+		has_permission = True
+
+	return has_permission
 
 
 def get_updated_scores(request):
