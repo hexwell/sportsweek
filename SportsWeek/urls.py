@@ -21,6 +21,6 @@ from . import views
 urlpatterns = [
 	url(r'^$', views.IndexView.as_view(), name='index'),
 	url(r'^scoreboard/', include('scoreboard.urls')),
-	url('^', include('django.contrib.auth.urls')),
+	url(r'^', include('django.contrib.auth.urls')),
 	url(r'^admin/', admin.site.urls),
 ]

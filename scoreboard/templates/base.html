@@ -67,7 +67,7 @@
           <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
             <li><a href="{% if user.is_superuser %}{% url 'admin:index' %}
-            {% else %}{% url 'index' %}?next={{request.path}}{%endif%}">Salve, {{user.username}}</a></li>
+            {% else %}{% url 'index' %}{%endif%}">Salve, {{user.username}}</a></li>
             <li><a href="{% url 'logout' %}?next={{request.path}}">Esci</a></li>
             {% else %}
             <li id="login"><a href="{% url 'login' %}?next={{request.path}}">Login</a></li>
