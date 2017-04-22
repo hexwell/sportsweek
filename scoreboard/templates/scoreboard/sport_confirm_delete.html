@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Elimina Sport - Sportsweek</title>
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Confermi di voler eliminare lo sport "{{ object }}"?</p>
+        <input type="submit" value="Conferma" />
+    </form>
+{% endblock %}

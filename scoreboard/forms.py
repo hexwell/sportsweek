@@ -6,9 +6,9 @@ from .models import Sport
 class SportForm(forms.ModelForm):
 	class Meta:
 		model = Sport
-		fields = ['name']
+		exclude = ('creator', )
+		labels = {'name': 'Nome'}
 
-	def clean(self):
-		cleaned_data = super(SportForm, self).clean()
-		
-		return cleaned_data
+	def __init__(self, *args, **kwargs):
+		super(SportForm, self).__init__(*args, **kwargs)
+		self.fields['name'].widget.attrs['placeholder'] = self.fields['name'].label
