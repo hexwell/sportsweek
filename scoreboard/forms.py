@@ -32,8 +32,8 @@ class EventForm(forms.ModelForm):
 
 	def clean(self):
 		cleaned_data = super(EventForm, self).clean()
-		if cleaned_data['team0'] == cleaned_data['team0']:
-			raise forms.ValidationError('Non puoi creare questa partita.')
+		if cleaned_data['team0'] == cleaned_data['team1']:
+			raise forms.ValidationError('Partita non valida.')
 		return cleaned_data
 
 
