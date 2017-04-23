@@ -9,8 +9,10 @@
         <div class="squad1">{{event.score1}}</div>,
         {{event.match_date}}
     </span>
-    <a href="{% url 'scoreboard:update_event' sport_id=event.sport.id event_id=event.id %}?next={{request.path}}">Edit</a>
-    <a href="{% url 'scoreboard:delete_event' sport_id=event.sport.id event_id=event.id %}?next={{request.path}}">Delete</a>
+    {% if sport_ADM %}
+        <a href="{% url 'scoreboard:update_event' sport_id=event.sport.id event_id=event.id %}?next={{request.path}}">Edit</a>
+        <a href="{% url 'scoreboard:delete_event' sport_id=event.sport.id event_id=event.id %}?next={{request.path}}">Delete</a>
+    {% endif %}
 </span>
 </li>
 </ul>
