@@ -6,12 +6,14 @@
 
 {% block content %}
     <a href="{% url 'scoreboard:ranking' sport_id=sport_id%}">Back</a>
-    <a href="{% url 'scoreboard:create_event' sport_id=sport_id %}?next={{request.path}}">Create Event</a>
+    {% if sport_ADM %}
+        <a href="{% url 'scoreboard:create_event' sport_id=sport_id %}?next={{request.path}}">Create Event</a>
+    {% endif %}
     <p>========Future========</p>
-    {% include "scoreboard/expand_events.html" with events=future_events request=request only %}
+    {% include "scoreboard/expand_events.html" with events=future_events request=request sport_ADM=sport_ADM only %}
     <p>========Present========</p>
-    {% include "scoreboard/expand_events.html" with events=current_events request=request only %}
+    {% include "scoreboard/expand_events.html" with events=current_events request=request sport_ADM=sport_ADM only %}
     <p>========Past========</p>
-    {% include "scoreboard/expand_events.html" with events=past_events request=request only %}
+    {% include "scoreboard/expand_events.html" with events=past_events request=request sport_ADM=sport_ADM only %}
     {% include "scoreboard/events_wrapper.html" only %}
 {% endblock %}

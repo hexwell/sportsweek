@@ -52,10 +52,11 @@ class RankingList(ListView):
 class EventsList(ListView):
 	model = Event
 	context_object_name = 'events'
+	sport_obj = None
 
 	def get_queryset(self):
-		sport_obj = get_sport(self.kwargs.get('sport_id'))
-		return Event.objects.filter(sport=sport_obj).order_by('-match_date')
+		self.sport_obj = get_sport(self.kwargs.get('sport_id'))
+		return Event.objects.filter(sport=self.sport_obj).order_by('-match_date')
 
 	def get_context_data(self, **kwargs):
 		context = super(EventsList, self).get_context_data(**kwargs)
@@ -74,6 +75,7 @@ class EventsList(ListView):
 
 		context['future_events'], context['current_events'], context['past_events'] = events[0], events[1], events[2]
 		context['sport_id'] = self.kwargs.get('sport_id')
+		context['sport_ADM'] = edit_sport_permission_check(self.request.user, self.sport_obj)
 
 		return context
 
@@ -97,12 +99,13 @@ class CreateSportView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 	def get_context_data(self, **kwargs):
 		context = super(CreateSportView, self).get_context_data(**kwargs)
 		context['op'] = 'Crea'
+		context['next'] = reverse('scoreboard:index')
 		return context
 
 	def form_valid(self, form):
 		if not create_sport_permission_check(self.request.user):
 			errors = form.errors.setdefault(forms_.NON_FIELD_ERRORS, ErrorList())
-			errors.append("User already created a sport")
+			errors.append("L'utente ha già creato uno sport")
 			return self.form_invalid(form)
 		form.instance.creator = self.request.user
 		return super(CreateSportView, self).form_valid(form)
