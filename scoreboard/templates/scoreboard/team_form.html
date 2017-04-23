@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block head %}
-    <title>{{ op }} Sport - Sportsweek</title>
+    <title>{{ op }} Squadra - Sportsweek</title>
 {% endblock %}
 
 {% block content %}
-    <a href="{{ next }}">Back</a>
+    <a href="{% url 'scoreboard:ranking' sport_id=object.sport.id%}">Back</a>
     <form method="POST" action="">
         {% csrf_token %}
         {{ form.as_p }}

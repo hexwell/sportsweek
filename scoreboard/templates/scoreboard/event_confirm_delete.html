@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% block head %}
-    <title>Elimina Sport - Sportsweek</title>
+    <title>Elimina Partita - Sportsweek</title>
 {% endblock %}
 
 {% block content %}
     <a href="{{ next }}">Back</a>
     <form action="" method="post">
         {% csrf_token %}
-        <p>Confermi di voler eliminare lo sport "{{ object }}", tutte le sue squadre, partite e punteggi?</p>
+        <p>Confermi di voler eliminare la partita "{{ object }}"?</p>
         <input type="submit" value="Conferma" />
     </form>
 {% endblock %}
