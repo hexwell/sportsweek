@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Elimina Squadra - Sportsweek</title>
+{% endblock %}
+
+{% block content %}
+    <a href="{% url 'scoreboard:ranking' sport_id=object.sport.id%}">Back</a>
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Confermi di voler eliminare la squadra "{{ object }}", i suoi punteggi e le sue partite?</p>
+        <input type="submit" value="Conferma" />
+    </form>
+{% endblock %}

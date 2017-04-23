@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<title>Punteggi - SportsWeek</title>
+<script src="{% static 'scoreboard/auto_update.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<span>
+<a href="{% url 'scoreboard:index' %}">Back</a>
+<a href="{% url 'scoreboard:events' sport_id=sport_id %}">All Events</a>
+{% if sport_ADM %}
+<a href="{% url 'scoreboard:update_sport' sport_id=sport_id %}?next={{request.path}}">Edit</a>
+<a href="{% url 'scoreboard:delete_sport' sport_id=sport_id %}">Delete</a>
+<a href="{% url 'scoreboard:create_event' sport_id=sport_id %}?next={{request.path}}">Create Event</a>
+<a href="{% url 'scoreboard:create_team' sport_id=sport_id %}">Create Team</a>
+{% endif %}
+</span>
+<h1>{{sport_name}}</h1>
+{% include "scoreboard/expand_events.html" with events=events request=request only %}
+{% include "scoreboard/events_wrapper.html" only %}
+{% if teams %}
+<table>
+  <tr>
+    <th>
+      <p><strong>Squadra</strong></p>
+    </th>
+    <th>
+      <p style="padding-left: 30px;"><strong>Punti</strong></p>
+    </th>
+    <th>
+      <p style="padding-left: 30px;"><strong>Azioni</strong></p>
+    </th>
+  </tr>
+  {% for team in teams %}
+  <tr>
+    <td>
+      <p style="margin-bottom: 0 !important;">{{team.name}}</p>
+    </td>
+    <td>
+      <p style="padding-left: 30px; margin-bottom: 0 !important;">{{team.score}}</p>
+    </td>
+    <td>
+      <a href="{% url 'scoreboard:update_team' sport_id=sport_id team_id=team.id %}" style="padding-left: 30px;">Edit</a>
+      <a href="{% url 'scoreboard:delete_team' sport_id=sport_id team_id=team.id %}">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>Questo sport non ha ancora squadre</p>
+{% endif %}
+{% endblock %}

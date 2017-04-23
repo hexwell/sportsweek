@@ -1,0 +1,17 @@
+{% for event in events %}
+<ul>
+<li>
+<span>
+    <span class="event" id="{{event.id}}">
+        {{event}},
+        <div class="squad0">{{event.score0}}</div>
+        -
+        <div class="squad1">{{event.score1}}</div>,
+        {{event.match_date}}
+    </span>
+    <a href="{% url 'scoreboard:update_event' sport_id=event.sport.id event_id=event.id %}?next={{request.path}}">Edit</a>
+    <a href="{% url 'scoreboard:delete_event' sport_id=event.sport.id event_id=event.id %}?next={{request.path}}">Delete</a>
+</span>
+</li>
+</ul>
+{% endfor %}
