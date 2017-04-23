@@ -12,7 +12,7 @@
     <span>
         <span><a href="{% url 'scoreboard:ranking' sport_id=sport.id %}">{{sport.name}}</a></span>
         <a href="{% url 'scoreboard:update_sport' sport_id=sport.id %}?next={{request.path}}">Edit</a>
-        <a href="{% url 'scoreboard:delete_sport' sport_id=sport.id %}">Delete</a>
+        <a href="{% url 'scoreboard:delete_sport' sport_id=sport.id %}?next={{request.path}}">Delete</a>
     </span>
   </li>
   {% endfor %}

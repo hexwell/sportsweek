@@ -154,7 +154,7 @@ class DeleteSportView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 		return get_object_or_404(self.model.objects.filter(id=self.kwargs.get('sport_id')))
 
 	def get_context_data(self, **kwargs):
-		context = super(DeleteTeamView).get_context_data(**kwargs)
+		context = super(DeleteSportView, self).get_context_data(**kwargs)
 		context['next'] = self.request.GET.get('next', reverse('scoreboard:index'))
 		return context
 
@@ -266,6 +266,7 @@ class CreateTeamView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 	def get_context_data(self, **kwargs):
 		context = super(CreateTeamView, self).get_context_data(**kwargs)
 		context['op'] = 'Crea'
+		context['sport_id'] = self.kwargs['sport_id']
 		return context
 
 	def form_valid(self, form):
@@ -296,6 +297,7 @@ class UpdateTeamView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	def get_context_data(self, **kwargs):
 		context = super(UpdateTeamView, self).get_context_data(**kwargs)
 		context['op'] = 'Modifica'
+		context['sport_id'] = self.kwargs['sport_id']
 		return context
 
 
