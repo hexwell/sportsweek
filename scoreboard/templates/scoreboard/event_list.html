@@ -15,5 +15,7 @@
     {% include "scoreboard/expand_events.html" with events=current_events request=request sport_ADM=sport_ADM only %}
     <p>========Past========</p>
     {% include "scoreboard/expand_events.html" with events=past_events request=request sport_ADM=sport_ADM only %}
+    {% if future_events or current_events or past_events %}
     {% include "scoreboard/events_wrapper.html" only %}
+    {% endif %}
 {% endblock %}

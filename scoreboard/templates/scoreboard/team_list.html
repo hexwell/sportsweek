@@ -19,7 +19,9 @@
 </span>
 <h1>{{sport_name}}</h1>
 {% include "scoreboard/expand_events.html" with events=events request=request sport_ADM=sport_ADM only %}
+{% if events %}
 {% include "scoreboard/events_wrapper.html" only %}
+{% endif %}
 {% if teams %}
 <table>
   <tr>
@@ -29,9 +31,11 @@
     <th>
       <p style="padding-left: 30px;"><strong>Punti</strong></p>
     </th>
-    <th>
-      <p style="padding-left: 30px;"><strong>Azioni</strong></p>
-    </th>
+    {% if sport_ADM %}
+      <th>
+        <p style="padding-left: 30px;"><strong>Azioni</strong></p>
+      </th>
+    {% endif %}
   </tr>
   {% for team in teams %}
   <tr>
@@ -41,10 +45,12 @@
     <td>
       <p style="padding-left: 30px; margin-bottom: 0 !important;">{{team.score}}</p>
     </td>
-    <td>
-      <a href="{% url 'scoreboard:update_team' sport_id=sport_id team_id=team.id %}" style="padding-left: 30px;">Edit</a>
-      <a href="{% url 'scoreboard:delete_team' sport_id=sport_id team_id=team.id %}">Delete</a>
-    </td>
+    {% if sport_ADM %}
+      <td>
+        <a href="{% url 'scoreboard:update_team' sport_id=sport_id team_id=team.id %}" style="padding-left: 30px;">Edit</a>
+        <a href="{% url 'scoreboard:delete_team' sport_id=sport_id team_id=team.id %}">Delete</a>
+      </td>
+    {% endif %}
   </tr>
   {% endfor %}
 </table>
