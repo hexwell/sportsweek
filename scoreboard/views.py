@@ -3,9 +3,9 @@ import datetime
 from django.shortcuts import get_object_or_404, reverse
 from django.http import HttpResponseBadRequest, JsonResponse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.forms.utils import ErrorList
 from django.forms import forms as forms_
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from .models import Sport, Team, Event
 from .forms import SportForm, TeamForm, EventForm
