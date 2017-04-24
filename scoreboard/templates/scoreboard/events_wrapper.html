@@ -12,6 +12,5 @@
 <script type="text/javascript" src="{% static 'scoreboard/auto_update.js' %}"></script>
 
 <script type="text/javascript">
-    // setInterval(update_wrapper("{% url 'scoreboard:get_updated_scores' %}?ids="), 5000);
-    update_wrapper("{% url 'scoreboard:get_updated_scores' %}?ids=")();
+    setInterval(update_wrapper("{% url 'scoreboard:get_updated_scores' %}?ids="), 5000);
 </script>
