@@ -29,10 +29,10 @@ class Event(models.Model):
 	sport = models.ForeignKey(Sport, on_delete=models.CASCADE)
 	team0 = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team0')
 	team1 = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team1')
-	score0 = models.IntegerField(default=0)
-	score1 = models.IntegerField(default=0)
+	score0 = models.PositiveIntegerField(default=0)
+	score1 = models.PositiveIntegerField(default=0)
 	match_date = models.DateTimeField('match date')
-	expired = False
+	expired = models.BooleanField(default=False)
 
 	def is_imminent(self, interval):
 		delta = self.__get_delta()
