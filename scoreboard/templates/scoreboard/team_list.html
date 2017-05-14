@@ -18,7 +18,7 @@
 {% endif %}
 </span>
 <h1>{{sport_name}}</h1>
-{% include "scoreboard/expand_events.html" with events=events request=request sport_ADM=sport_ADM only %}
+{% include "scoreboard/expand_events.html" with events=events request=request sport_ADM=sport_ADM referee=referee only %}
 {% if events %}
 {% include "scoreboard/events_wrapper.html" only %}
 {% endif %}

@@ -1,6 +1,6 @@
 import datetime
 
-from django.shortcuts import get_object_or_404, reverse
+from django.shortcuts import get_object_or_404, reverse, HttpResponse
 from django.http import HttpResponseBadRequest, JsonResponse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -38,6 +38,7 @@ class RankingList(ListView):
 		context['sport_name'] = self.sport_obj.name
 		context['sport_id'] = self.kwargs.get('sport_id')
 		context['sport_ADM'] = edit_sport_permission_check(self.request.user, self.sport_obj)
+		context['referee'] = referee_permission(self.request.user)
 
 		events = []
 		for event in Event.objects.filter(sport=self.sport_obj).order_by('-match_date'):
@@ -76,6 +77,7 @@ class EventsList(ListView):
 		context['future_events'], context['current_events'], context['past_events'] = events[0], events[1], events[2]
 		context['sport_id'] = self.kwargs.get('sport_id')
 		context['sport_ADM'] = edit_sport_permission_check(self.request.user, self.sport_obj)
+		context['referee'] = referee_permission(self.request.user)
 
 		return context
 
@@ -349,6 +351,15 @@ def edit_sport_permission_check(user, sport):
 	return False
 
 
+def referee_permission(user):
+	if user.is_authenticated:
+		if user.is_superuser:
+			return True
+		return len(user.groups.filter(name='Referee')) == 1
+
+	return False
+
+
 def get_updated_scores(request):
 	ids = request.GET.get('ids', False)
 	if not ids:
@@ -358,3 +369,37 @@ def get_updated_scores(request):
 
 	data = {event.id: {"score0": event.score0, "score1": event.score1} for event in events}
 	return JsonResponse(data)
+
+
+def update_scores(request, sport_id, event_id, team, val):
+	del sport_id
+
+	if referee_permission(request.user):
+		event = get_object_or_404(Event.objects.filter(id=event_id))
+		if not event.expired:
+			if team == '0':
+				if val == '+':
+					event.score0 += 1
+				elif val == '-':
+					event.score0 -= 1
+			elif team == '1':
+				if val == '+':
+					event.score1 += 1
+				elif val == '-':
+					event.score1 -= 1
+			event.save()
+			return HttpResponse("success")
+
+	return HttpResponseBadRequest()
+
+
+def end_event(request, sport_id, event_id):
+	del sport_id
+
+	if referee_permission(request.user):
+		event = get_object_or_404(Event.objects.filter(id=event_id))
+		event.expired = True
+		event.save()
+		return HttpResponse("success")
+
+	return HttpResponseBadRequest()

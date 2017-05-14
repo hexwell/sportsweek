@@ -13,3 +13,28 @@ function update_wrapper(url){
        });
    });
 }
+
+function sendData(url){
+    $.get(url, function(data, status){});
+}
+
+function updateLocal(event_id, score, val) {
+    var elem, container = $('#' + event_id);
+    if(score === 0){
+        elem = container.find(".squad0")[0];
+        if(val === '+'){
+            elem.innerHTML = parseInt(elem.innerHTML) + 1
+        }
+        else if(val === '-'){
+            elem.innerHTML = parseInt(elem.innerHTML) - 1
+        }
+    } else if (score === 1){
+        elem = container.find(".squad1")[0];
+        if(val === '+'){
+            elem.innerHTML = parseInt(elem.innerHTML) + 1
+        }
+        else if(val === '-'){
+            elem.innerHTML = parseInt(elem.innerHTML) - 1
+        }
+    }
+}

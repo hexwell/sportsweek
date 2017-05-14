@@ -4,11 +4,35 @@
 <span>
     <span class="event" id="{{event.id}}">
         {{event}},
-        <div class="squad0">{{event.score0}}</div>
-        -
-        <div class="squad1">{{event.score1}}</div>,
         {{event.match_date}}
-    </span>
+
+        {% if referee and not event.expired %}
+        <div>
+            <table>
+              <tr>
+                <th><a onclick="sendData('{% url 'scoreboard:update_scores' sport_id=event.sport.id event_id=event.id team=0 val="+" %}'); updateLocal({{ event.id }}, 0, '+')">+</a></th>
+                <th>&nbsp</th>
+                <th><a onclick="sendData('{% url 'scoreboard:update_scores' sport_id=event.sport.id event_id=event.id team=1 val="+" %}'); updateLocal({{ event.id }}, 1, '+')">+</a></th>
+              </tr>
+              <tr>
+                <td class="squad0">{{event.score0}}</td>
+                <th> - </th>
+                <td class="squad1">{{event.score1}}</td>
+              </tr>
+              <tr>
+                <td><a onclick="sendData('{% url 'scoreboard:update_scores' sport_id=event.sport.id event_id=event.id team=0 val="-" %}'); updateLocal({{ event.id }}, 0, '-')">-</a></td>
+                <th>&nbsp</th>
+                <td><a onclick="sendData('{% url 'scoreboard:update_scores' sport_id=event.sport.id event_id=event.id team=1 val="-" %}'); updateLocal({{ event.id }}, 1, '-')">-</a></td>
+              </tr>
+            </table>
+        </div>
+        <a onclick="sendData('{% url 'scoreboard:end_event' sport_id=event.sport.id event_id=event.id %}'); location.reload(false)">End match</a>
+        </span>
+        {% else %}
+        <p>{{event.score0}} - {{event.score1}}</p>
+        </span>
+        {% endif %}
+
     {% if sport_ADM %}
         <a href="{% url 'scoreboard:update_event' sport_id=event.sport.id event_id=event.id %}?next={{request.path}}">Edit</a>
         <a href="{% url 'scoreboard:delete_event' sport_id=event.sport.id event_id=event.id %}?next={{request.path}}">Delete</a>

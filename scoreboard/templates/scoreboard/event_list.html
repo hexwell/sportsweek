@@ -10,11 +10,11 @@
         <a href="{% url 'scoreboard:create_event' sport_id=sport_id %}?next={{request.path}}">Create Event</a>
     {% endif %}
     <p>========Future========</p>
-    {% include "scoreboard/expand_events.html" with events=future_events request=request sport_ADM=sport_ADM only %}
+    {% include "scoreboard/expand_events.html" with events=future_events request=request sport_ADM=sport_ADM referee=referee only %}
     <p>========Present========</p>
-    {% include "scoreboard/expand_events.html" with events=current_events request=request sport_ADM=sport_ADM only %}
+    {% include "scoreboard/expand_events.html" with events=current_events request=request sport_ADM=sport_ADM referee=referee only %}
     <p>========Past========</p>
-    {% include "scoreboard/expand_events.html" with events=past_events request=request sport_ADM=sport_ADM only %}
+    {% include "scoreboard/expand_events.html" with events=past_events request=request sport_ADM=sport_ADM referee=referee only %}
     {% if future_events or current_events or past_events %}
     {% include "scoreboard/events_wrapper.html" only %}
     {% endif %}
