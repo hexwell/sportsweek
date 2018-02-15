@@ -12,4 +12,4 @@ A ranking for each sport is generated so players can keep the competition high!
 ## Developers
 
 * **Ettore Forigo** ([Hexwell](https://github.com/Hexwell)) - *Backend*
-* **Tobia Valerio** ([TheItalianPeep](https://github.com/TheItalianPeep)) - *Frontend & Design*
+* **Tobia Valerio** ([tobsval](https://github.com/tobsval)) - *Frontend & Design*
